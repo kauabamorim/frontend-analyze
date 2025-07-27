@@ -20,7 +20,7 @@ export default function SignUpPage() {
             <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
               <Brain className="w-6 h-6 text-white" />
             </div>
-            <span className="text-2xl font-bold text-gray-900">Cluely</span>
+            <span className="text-2xl font-bold text-gray-900">Analise</span>
           </div>
           <h1 className="text-2xl font-bold text-gray-900 mb-2">
             Create your account
