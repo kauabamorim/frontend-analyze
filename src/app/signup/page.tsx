@@ -27,7 +27,7 @@ export default function SignUpPage() {
           </h1>
           <p className="text-gray-600 text-sm">
             Comece hoje e ganhe{" "}
-            <span className="font-medium text-blue-600">2 créditos grátis</span>{" "}
+            <span className="font-medium text-blue-600">2 consultas grátis</span>{" "}
             instantaneamente!
           </p>
         </div>
