@@ -21,7 +21,7 @@ export function SignUpPage() {
   const handleSubmit = form.handleSubmit(async (data) => {
     try {
       const { data: response } = await axios.post(
-        `${process.env.ANALYZE_PUBLIC_API_BASE_URL}/api/user/register`,
+        `${process.env.NEXT_PUBLIC_ANALYZE_API_BASE_URL}/api/user/register`,
         {
           firstName: data.firstName,
           lastName: data.lastName,
