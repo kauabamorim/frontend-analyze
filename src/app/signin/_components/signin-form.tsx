@@ -9,31 +9,32 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import apiInstance from "@/lib/apiInstance";
 import { Brain } from "lucide-react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import apiInstance from "@/lib/apiInstance";
 
-export function SignUpPage() {
+export default function SignInPage() {
   const form = useForm();
-
   const handleSubmit = form.handleSubmit(async (data) => {
     try {
-      const { data: response } = await apiInstance.post(`/api/user/register`, {
-        firstName: data.firstName,
-        lastName: data.lastName,
+      const { data: response } = await apiInstance.post(`/api/user/login`, {
         email: data.email,
         password: data.password,
       });
-      form.reset();
-      toast(response?.message || "Usuário registrado com sucesso!");
-      window.location.href = "/signin";
+
+      if (!response?.token) {
+        throw new Error("Token não recebido na resposta.");
+      }
+
+      localStorage.setItem("token", response.token);
+      toast("Login realizado com sucesso!");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       const errorMessage =
-        error?.response?.data?.error || "Erro ao registrar usuário.";
-      console.error("Erro ao registrar usuário:", errorMessage);
+        error?.response?.data?.error || "Erro ao realizar login.";
+      console.error("Erro ao realizar login:", errorMessage);
       toast(errorMessage);
     }
   });
@@ -49,44 +50,20 @@ export function SignUpPage() {
             <span className="text-2xl font-bold text-gray-900">Analise</span>
           </div>
           <h1 className="text-2xl font-bold text-gray-900 mb-2">
-            Create your account
+            Bem-vindo de volta
           </h1>
-          <p className="text-gray-600 text-sm">
-            Comece hoje e ganhe{" "}
-            <span className="font-medium text-blue-600">
-              2 consultas grátis
-            </span>{" "}
-            instantaneamente!
-          </p>
+          <p className="text-gray-600">Entre na sua conta para continuar</p>
         </div>
 
         <Card className="border-0 shadow-xl">
           <CardHeader className="space-y-1 pb-4">
-            <CardTitle className="text-xl text-center">Cadastrar-se</CardTitle>
+            <CardTitle className="text-xl text-center">Entrar</CardTitle>
             <CardDescription className="text-center">
-              Insira seus dados para criar sua conta
+              Insira suas credenciais para acessar sua conta
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="firstName">Primeiro nome</Label>
-                  <Input
-                    id="firstName"
-                    placeholder="John"
-                    {...form.register("firstName")}
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="lastName">Sobrenome</Label>
-                  <Input
-                    id="lastName"
-                    placeholder="Doe"
-                    {...form.register("lastName")}
-                  />
-                </div>
-              </div>
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
                 <Input
@@ -97,38 +74,35 @@ export function SignUpPage() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+                <div className="flex items-center justify-between">
+                  <Label htmlFor="password">Senha</Label>
+                  <Link
+                    href="#"
+                    className="text-sm text-blue-600 hover:underline"
+                  >
+                    Esqueceu a senha?
+                  </Link>
+                </div>
                 <Input
                   id="password"
                   type="password"
-                  placeholder="Crie uma senha forte"
+                  placeholder="Enter your password"
                   {...form.register("password")}
                 />
               </div>
 
               <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 cursor-pointer">
-                Criar Conta
+                Entrar
               </Button>
             </form>
 
-            <div className="text-center text-sm text-gray-600">
-              Ao se cadastrar, você concorda com nossos{" "}
-              <Link href="#" className="text-blue-600 hover:underline">
-                Termos de Serviço
-              </Link>{" "}
-              e{" "}
-              <Link href="#" className="text-blue-600 hover:underline">
-                Política de Privacidade
-              </Link>
-            </div>
-
             <div className="text-center text-sm">
-              Já possui uma conta?{" "}
+              {"Não tem uma conta? "}
               <Link
-                href="/signin"
+                href="/signup"
                 className="text-blue-600 hover:underline font-medium"
               >
-                Entrar
+                Cadastre-se
               </Link>
             </div>
           </CardContent>
