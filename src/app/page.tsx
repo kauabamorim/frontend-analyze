@@ -51,12 +51,12 @@ export default function Home() {
                 Sobre
               </a>
               <Link href="/signin">
-                <Button variant="ghost" className="text-black">
+                <Button variant="ghost" className="text-black cursor-pointer">
                   Entrar
                 </Button>
               </Link>
               <Link href="/signup">
-                <Button>Começar</Button>
+                <Button className="cursor-pointer">Começar</Button>
               </Link>
             </div>
           </div>

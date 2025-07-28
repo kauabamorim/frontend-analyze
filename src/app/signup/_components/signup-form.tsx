@@ -107,7 +107,7 @@ export function SignUpPage() {
                 />
               </div>
 
-              <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+              <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 cursor-pointer">
                 Criar Conta
               </Button>
             </form>
