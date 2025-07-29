@@ -28,7 +28,7 @@ export default function SignInPage() {
         throw new Error("Token não recebido na resposta.");
       }
 
-      localStorage.setItem("token", response.token);
+      document.cookie = `token=${response.token}; path=/;`;
       toast("Login realizado com sucesso!");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
