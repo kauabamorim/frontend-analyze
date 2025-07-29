@@ -1,4 +1,5 @@
 import { MiddlewareConfig, NextRequest, NextResponse } from "next/server";
+import { jwtVerify } from "jose";
 
 const publicRoutes = [
   {
@@ -17,7 +18,7 @@ const publicRoutes = [
 
 const REDIRECT_WHEN_NOT_AUTHENTICATED_ROUTE = "/";
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
   const publicRoute = publicRoutes.find((route) => route.path === path);
   const authToken =
@@ -48,8 +49,25 @@ export function middleware(request: NextRequest) {
   }
 
   if (authToken && !publicRoute) {
-    // checar se o jwt expirou
-    console.log("testing");
+    const JWT_SECRET = process.env.JWT_SECRET || "";
+
+    try {
+      const { payload } = await jwtVerify(
+        authToken,
+        new TextEncoder().encode(JWT_SECRET)
+      );
+      console.log("JWT verification successful", payload);
+    } catch (error) {
+      console.log(
+        "JWT verification failed, redirecting to sign-in page",
+        error
+      );
+      const redirectUrl = request.nextUrl.clone();
+      redirectUrl.pathname = REDIRECT_WHEN_NOT_AUTHENTICATED_ROUTE;
+      const response = NextResponse.redirect(redirectUrl);
+      response.cookies.delete("token");
+      return response;
+    }
     return NextResponse.next();
   }
 
