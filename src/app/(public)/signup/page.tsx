@@ -15,7 +15,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import apiInstance from "@/lib/apiInstance";
 
-export function SignUpPage() {
+export default function SignUpPage() {
   const form = useForm();
 
   const handleSubmit = form.handleSubmit(async (data) => {
