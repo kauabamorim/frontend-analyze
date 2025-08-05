@@ -34,27 +34,32 @@ export default function Home() {
             <div className="hidden md:flex items-center space-x-8">
               <a
                 href="#features"
-                className="text-gray-600 hover:text-gray-900 transition-colors"
+                className="text-gray-600 hover:text-gray-900 transition-colors relative group"
               >
                 Recursos
+                <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-gray-900 transition-all duration-300 group-hover:w-full"></span>
               </a>
               <a
                 href="#pricing"
-                className="text-gray-600 hover:text-gray-900 transition-colors"
+                className="text-gray-600 hover:text-gray-900 transition-colors relative group"
               >
                 Preços
+                <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-gray-900 transition-all duration-300 group-hover:w-full"></span>
               </a>
               <a
                 href="#about"
-                className="text-gray-600 hover:text-gray-900 transition-colors"
+                className="text-gray-600 hover:text-gray-900 transition-colors relative group"
               >
-                Sobre
+                Documentação
+                <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-gray-900 transition-all duration-300 group-hover:w-full"></span>
               </a>
-              <Link href="/signin">
-                <Button variant="ghost" className="text-black cursor-pointer">
-                  Entrar
-                </Button>
-              </Link>
+              <a
+                href="/signin"
+                className="text-black hover:text-gray-900 transition-colors relative group"
+              >
+                Entrar
+                <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-gray-900 transition-all duration-300 group-hover:w-full"></span>
+              </a>
               <Link href="/signup">
                 <Button className="cursor-pointer">Começar</Button>
               </Link>
@@ -88,12 +93,12 @@ export default function Home() {
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </Link>
-            <Button
+            {/* <Button
               size="lg"
               className="bg-white dark:bg-black/10 dark:text-black cursor-pointer hover:bg-gray-100 dark:hover:bg-black/20"
             >
               Documentação
-            </Button>
+            </Button> */}
           </div>
           <p className="text-sm text-gray-500 mt-4">
             Sem cartão de crédito • 5 consultas grátis
