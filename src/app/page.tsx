@@ -82,14 +82,17 @@ export default function Home() {
             <Link href="/signup">
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 dark:text-white cursor-pointer"
               >
                 Comece Gratuitamente
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </Link>
-            <Button size="lg" variant="outline" className="bg-white">
-              Ver Exemplo
+            <Button
+              size="lg"
+              className="bg-white dark:bg-black/10 dark:text-black cursor-pointer hover:bg-gray-100 dark:hover:bg-black/20"
+            >
+              Documentação
             </Button>
           </div>
           <p className="text-sm text-gray-500 mt-4">
@@ -231,7 +234,10 @@ export default function Home() {
                     Suporte por e-mail
                   </li>
                 </ul>
-                <Button className="w-full mt-6" variant="outline">
+                <Button
+                  className="w-full mt-6 cursor-pointer"
+                  variant="outline"
+                >
                   Assinar agora
                 </Button>
               </CardContent>
@@ -274,7 +280,7 @@ export default function Home() {
                     Suporte por e-mail
                   </li>
                 </ul>
-                <Button className="w-full mt-6 bg-blue-500 hover:bg-blue-600">
+                <Button className="w-full mt-6 bg-blue-500 hover:bg-blue-600 cursor-pointer">
                   Assinar agora
                 </Button>
               </CardContent>
@@ -318,7 +324,10 @@ export default function Home() {
                     Integrações personalizadas
                   </li>
                 </ul>
-                <Button className="w-full mt-6" variant="outline">
+                <Button
+                  className="w-full mt-6 cursor-pointer"
+                  variant="outline"
+                >
                   Falar com vendedor
                 </Button>
               </CardContent>
