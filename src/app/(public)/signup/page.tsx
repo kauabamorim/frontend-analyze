@@ -54,7 +54,7 @@ export default function SignUpPage() {
           <p className="text-gray-600 text-sm">
             Comece hoje e ganhe{" "}
             <span className="font-medium text-blue-600">
-              2 consultas grátis
+              5 consultas grátis
             </span>{" "}
             instantaneamente!
           </p>

@@ -93,7 +93,7 @@ export default function Home() {
             </Button>
           </div>
           <p className="text-sm text-gray-500 mt-4">
-            Sem cartão de crédito • 2 consultas grátis
+            Sem cartão de crédito • 5 consultas grátis
           </p>
         </div>
       </section>
