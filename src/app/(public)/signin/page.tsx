@@ -30,6 +30,7 @@ export default function SignInPage() {
 
       document.cookie = `token=${response.token}; path=/;`;
       toast("Login realizado com sucesso!");
+      window.location.href = "/dashboard";
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       const errorMessage =
