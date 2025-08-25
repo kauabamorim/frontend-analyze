@@ -49,7 +49,7 @@ export default function SignUpPage() {
             <span className="text-2xl font-bold text-gray-900">Analise</span>
           </div>
           <h1 className="text-2xl font-bold text-gray-900 mb-2">
-            Create your account
+            Crie sua conta
           </h1>
           <p className="text-gray-600 text-sm">
             Comece hoje e ganhe{" "}

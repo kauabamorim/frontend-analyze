@@ -54,6 +54,11 @@ export function UserProvider({ children }: { children: ReactNode }) {
   return <UserContext.Provider value={user}>{children}</UserContext.Provider>;
 }
 
+export function logout() {
+  document.cookie = "token=; Max-Age=0; path=/";
+  window.location.href = "/";
+}
+
 export function useUser() {
   return useContext(UserContext);
 }

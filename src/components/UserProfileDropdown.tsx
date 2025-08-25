@@ -11,7 +11,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { useTheme } from "next-themes";
-import { useUser } from "@/app/context/UserContext";
+import { useUser, logout } from "@/app/context/UserContext";
 
 export function UserProfileDropdown() {
   const { setTheme, theme } = useTheme();
@@ -102,7 +102,8 @@ export function UserProfileDropdown() {
 
           <Button
             variant="ghost"
-            className="w-full justify-start text-sm font-normal text-destructive hover:text-destructive"
+            className="w-full justify-start text-sm font-normal text-destructive hover:text-destructive cursor-pointer"
+            onClick={logout}
           >
             <LogOut className="mr-2 h-4 w-4" />
             Sair
