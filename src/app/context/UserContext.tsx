@@ -42,6 +42,8 @@ export function UserProvider({ children }: { children: ReactNode }) {
         } catch (error) {
           console.error("JWT verification context user failed", error);
           setUser(null);
+          document.cookie = "token=; Max-Age=0; path=/";
+          window.location.href = "/";
         }
       }
     };
