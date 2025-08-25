@@ -3,14 +3,15 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Brain, History, Users, Menu, X } from "lucide-react";
+import { UserProfileDropdown } from "./UserProfileDropdown";
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
     { to: "/dashboard", label: "Analisar", icon: Brain },
-    { to: "/historico", label: "Histórico", icon: History },
-    { to: "/usuarios", label: "Usuários", icon: Users },
+    { to: "/history", label: "Histórico", icon: History },
+    { to: "/users", label: "Usuários", icon: Users },
   ];
 
   return (
@@ -44,9 +45,9 @@ export function Navbar() {
                 {label}
               </a>
             ))}
+            <UserProfileDropdown />
           </div>
 
-          {/* Mobile Menu Button */}
           <Button
             variant="ghost"
             size="sm"
@@ -80,6 +81,7 @@ export function Navbar() {
                 </a>
               ))}
             </div>
+            <UserProfileDropdown />
           </div>
         )}
       </div>

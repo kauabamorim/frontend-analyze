@@ -1,6 +1,7 @@
 import { ThemeProvider } from "next-themes";
 import "../globals.css";
 import { Navbar } from "@/components/NavBar";
+import { UserProvider } from "../context/UserContext";
 
 export default function PrivateLayout({
   children,
@@ -14,8 +15,10 @@ export default function PrivateLayout({
       enableSystem
       disableTransitionOnChange
     >
-      <Navbar />
-      {children}
+      <UserProvider>
+        <Navbar />
+        {children}
+      </UserProvider>
     </ThemeProvider>
   );
 }
