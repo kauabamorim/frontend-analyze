@@ -27,14 +27,16 @@ export default function SignUpPage() {
         password: data.password,
       });
       form.reset();
-      toast(response?.message || "Usuário registrado com sucesso!");
+      toast.success("Sucesso!", {
+        description: response?.message || "Usuário registrado com sucesso!",
+      });
       window.location.href = "/signin";
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       const errorMessage =
         error?.response?.data?.error || "Erro ao registrar usuário.";
       console.error("Erro ao registrar usuário:", errorMessage);
-      toast(errorMessage);
+      toast.error(errorMessage);
     }
   });
 
@@ -49,7 +51,7 @@ export default function SignUpPage() {
             <span className="text-2xl font-bold text-gray-900">Analise</span>
           </div>
           <h1 className="text-2xl font-bold text-gray-900 mb-2">
-            Create your account
+            Crie sua conta
           </h1>
           <p className="text-gray-600 text-sm">
             Comece hoje e ganhe{" "}

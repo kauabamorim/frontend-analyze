@@ -49,7 +49,7 @@ export async function middleware(request: NextRequest) {
   }
 
   if (authToken && !publicRoute) {
-    const JWT_SECRET = process.env.JWT_SECRET || "";
+    const JWT_SECRET = process.env.NEXT_PUBLIC_JWT_SECRET || "";
 
     try {
       const { payload } = await jwtVerify(
