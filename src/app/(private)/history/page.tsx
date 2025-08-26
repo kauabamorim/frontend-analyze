@@ -14,6 +14,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Search, Filter, Download, BarChart3 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import apiInstance from "@/lib/apiInstance";
+import { useRouter } from "next/navigation";
 
 type Idea = {
   id: string;
@@ -29,6 +30,7 @@ type Idea = {
 };
 
 const HistoryPage = () => {
+  const router = useRouter();
   const [ideas, setIdeas] = useState<Idea[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterStatus, setFilterStatus] = useState("todos");
@@ -39,7 +41,6 @@ const HistoryPage = () => {
       try {
         const { data: response } = await apiInstance.get("/api/user/history");
         setIdeas(response);
-        console.log(response);
       } catch (error) {
         console.error("Erro ao buscar histórico de ideias:", error);
       }
@@ -61,7 +62,7 @@ const HistoryPage = () => {
   });
 
   const handleViewIdea = (id: string) => {
-    console.log("Visualizar ideia:", id);
+    router.push(`/history/${id}`);
   };
 
   const stats = {

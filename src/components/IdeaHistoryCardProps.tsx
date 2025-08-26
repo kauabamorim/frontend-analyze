@@ -80,7 +80,7 @@ export function IdeaHistoryCard({ idea, onView }: IdeaHistoryCardProps) {
             size="sm"
             variant="outline"
             onClick={() => onView(idea.id)}
-            className="gap-2 border-border/50 hover:border-primary/50 transition-smooth"
+            className="gap-2 border-border/50 hover:border-primary/50 transition-smooth cursor-pointer"
             disabled={idea.status.toUpperCase() !== "COMPLETED"}
           >
             <Eye className="w-4 h-4" />

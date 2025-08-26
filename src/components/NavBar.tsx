@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Brain, History, Users, Menu, X } from "lucide-react";
 import { UserProfileDropdown } from "./UserProfileDropdown";
+import Link from "next/link";
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -31,19 +32,14 @@ export function Navbar() {
 
           <div className="hidden md:flex items-center gap-1">
             {navItems.map(({ to, label, icon: Icon }) => (
-              <a
+              <Link
                 key={to}
                 href={to}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-smooth ${
-                  typeof window !== "undefined" &&
-                  window.location.pathname === to
-                    ? "bg-primary/20 text-primary font-medium"
-                    : "text-muted-foreground hover:text-foreground hover:bg-accent/50"
-                }`}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-smooth text-muted-foreground hover:text-foreground hover:bg-accent/50`}
               >
                 <Icon className="w-4 h-4" />
                 {label}
-              </a>
+              </Link>
             ))}
             <UserProfileDropdown />
           </div>
