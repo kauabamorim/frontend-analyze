@@ -171,9 +171,9 @@ const HistoryPage = () => {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="todos">Todos os status</SelectItem>
-                    <SelectItem value="completed">Concluídas</SelectItem>
-                    <SelectItem value="pending">Pendentes</SelectItem>
-                    <SelectItem value="error">Com erro</SelectItem>
+                    <SelectItem value="COMPLETED">Concluídas</SelectItem>
+                    <SelectItem value="PENDING">Pendentes</SelectItem>
+                    <SelectItem value="ERROR">Com erro</SelectItem>
                   </SelectContent>
                 </Select>
 
