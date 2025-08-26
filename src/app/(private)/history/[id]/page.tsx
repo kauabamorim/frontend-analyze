@@ -19,11 +19,25 @@ type Idea = {
   idea: string;
 };
 
-export default function ShowIdeaPage({ params }: { params: { id: string } }) {
-  const { id } = params;
+export default function ShowIdeaPage({
+  params,
+}: {
+  params: { id: string } | Promise<{ id: string }>;
+}) {
+  const [id, setId] = useState<string | null>(null);
   const [idea, setIdea] = useState<Idea | null>(null);
 
   useEffect(() => {
+    const resolveParams = async () => {
+      const resolved = await params;
+      setId(resolved.id);
+    };
+    resolveParams();
+  }, [params]);
+
+  useEffect(() => {
+    if (!id) return;
+
     const fetchIdea = async () => {
       try {
         const { data: response } = await apiInstance.get(`/api/analyze/${id}`);
