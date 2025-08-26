@@ -15,7 +15,7 @@ export function Navbar() {
   ];
 
   return (
-    <nav className="border-b border-border/50 bg-gradient-subtle sticky top-0 z-50">
+    <nav className="border-b border-border/50 bg-gradient-subtle sticky top-0 z-50 backdrop-blur-md">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center gap-3">
