@@ -36,8 +36,6 @@ export default function ShowIdeaPage({ params }: { params: { id: string } }) {
     fetchIdea();
   }, [id]);
 
-  console.log("analysisData", idea);
-
   if (!idea) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 py-8">
