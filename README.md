@@ -1,6 +1,6 @@
 # frontend-analyze
 
-Este é o front-end da aplicação **Analyze**, desenvolvido com [Next.js](https://nextjs.org/) e hospedado na **AWS Amplify**. A aplicação integra-se com um back-end em Node.js/Express e utiliza o Prisma ORM para gerenciamento do banco de dados.
+Este é o front-end da aplicação **Analyze**, desenvolvido com [Next.js](https://nextjs.org/) e hospedado na **Vercel**. A aplicação integra-se com um back-end em Node.js/Express e utiliza o Prisma ORM para gerenciamento do banco de dados.
 
 ---
 
