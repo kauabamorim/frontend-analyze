@@ -6,8 +6,8 @@ Este é o front-end da aplicação **Analyze**, desenvolvido com [Next.js](https
 
 ## 🔗 Link de Produção
 
-> ✅ Hospedado via AWS Amplify:  
-[https://main.dk3mck5sk1s5i.amplifyapp.com](https://main.dk3mck5sk1s5i.amplifyapp.com)
+> ✅ Hospedado via Vercel:  
+[https://frontend-analyze.vercel.app/](https://frontend-analyze.vercel.app/)
 
 ---
 
