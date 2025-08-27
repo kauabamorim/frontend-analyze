@@ -19,28 +19,15 @@ type Idea = {
   idea: string;
 };
 
-export default function ShowIdeaPage({
-  params,
-}: {
-  params: { id: string } | Promise<{ id: string }>;
-}) {
-  const [id, setId] = useState<string | null>(null);
+export default function ShowIdeaPage({ params }: { params: { id: string } }) {
   const [idea, setIdea] = useState<Idea | null>(null);
 
   useEffect(() => {
-    const resolveParams = async () => {
-      const resolved = await params;
-      setId(resolved.id);
-    };
-    resolveParams();
-  }, [params]);
-
-  useEffect(() => {
-    if (!id) return;
-
     const fetchIdea = async () => {
       try {
-        const { data: response } = await apiInstance.get(`/api/analyze/${id}`);
+        const { data: response } = await apiInstance.get(
+          `/api/analyze/${params.id}`
+        );
         setIdea(response);
       } catch (error) {
         console.error("Erro ao buscar histórico de ideias:", error);
@@ -48,7 +35,7 @@ export default function ShowIdeaPage({
     };
 
     fetchIdea();
-  }, [id]);
+  }, [params.id]);
 
   if (!idea) {
     return (
@@ -97,13 +84,13 @@ export default function ShowIdeaPage({
 
         <AnalysisResults
           data={{
-            viability: idea?.viability || "",
-            marketPotential: idea?.marketPotential || "",
-            innovation: idea?.innovation || "",
-            challenges: idea?.challenges || "",
-            suggestions: idea?.suggestions || "",
+            viability: idea.viability || "",
+            marketPotential: idea.marketPotential || "",
+            innovation: idea.innovation || "",
+            challenges: idea.challenges || "",
+            suggestions: idea.suggestions || "",
           }}
-          idea={idea?.idea}
+          idea={idea.idea}
         />
       </div>
     </div>
