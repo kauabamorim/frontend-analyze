@@ -36,7 +36,7 @@ Este é o front-end da aplicação **Analyze**, desenvolvido com [Next.js](https
 
 ## 🚀 Deploy
 
-O deploy é realizado automaticamente pela **AWS Amplify** a cada novo push na branch `main`. O processo inclui:
+O deploy é realizado automaticamente pela **Vercel** a cada novo push na branch `main`. O processo inclui:
 
 - Instalação de dependências
 - Build do projeto
