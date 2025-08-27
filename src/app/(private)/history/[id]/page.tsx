@@ -22,33 +22,48 @@ type Idea = {
 export default function ShowIdeaPage({
   params,
 }: {
-  params: { id: string } | Promise<{ id: string }>;
+  params: Promise<{ id: string }>;
 }) {
   const [id, setId] = useState<string | null>(null);
   const [idea, setIdea] = useState<Idea | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const resolveParams = async () => {
-      const resolved = await params;
-      setId(resolved.id);
-    };
-    resolveParams();
-  }, [params]);
-
-  useEffect(() => {
-    if (!id) return;
-
-    const fetchIdea = async () => {
+    const resolveParamsAndFetchIdea = async () => {
       try {
-        const { data: response } = await apiInstance.get(`/api/analyze/${id}`);
+        const resolvedParams = await params;
+        setId(resolvedParams.id);
+
+        const { data: response } = await apiInstance.get(
+          `/api/analyze/${resolvedParams.id}`
+        );
         setIdea(response);
       } catch (error) {
-        console.error("Erro ao buscar histórico de ideias:", error);
+        console.error("Erro ao buscar análise:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
-    fetchIdea();
-  }, [id]);
+    resolveParamsAndFetchIdea();
+  }, [params]);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 py-8">
+        <div className="container mx-auto px-4">
+          <div className="text-center py-16">
+            <h1 className="text-2xl font-bold text-foreground mb-4">
+              Carregando análise...
+            </h1>
+            <p className="text-muted-foreground">
+              Por favor, aguarde enquanto buscamos os dados.
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   if (!idea) {
     return (
@@ -97,13 +112,13 @@ export default function ShowIdeaPage({
 
         <AnalysisResults
           data={{
-            viability: idea?.viability || "",
-            marketPotential: idea?.marketPotential || "",
-            innovation: idea?.innovation || "",
-            challenges: idea?.challenges || "",
-            suggestions: idea?.suggestions || "",
+            viability: idea.viability || "",
+            marketPotential: idea.marketPotential || "",
+            innovation: idea.innovation || "",
+            challenges: idea.challenges || "",
+            suggestions: idea.suggestions || "",
           }}
-          idea={idea?.idea}
+          idea={idea.idea}
         />
       </div>
     </div>
