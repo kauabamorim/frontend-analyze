@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Brain, History, Users, Menu, X } from "lucide-react";
 import { UserProfileDropdown } from "./UserProfileDropdown";
 import Link from "next/link";
+import { Separator } from "@/components/ui/separator";
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -41,6 +42,7 @@ export function Navbar() {
                 {label}
               </Link>
             ))}
+            {/* Versão Desktop */}
             <UserProfileDropdown />
           </div>
 
@@ -76,8 +78,9 @@ export function Navbar() {
                   {label}
                 </a>
               ))}
+              <Separator className="my-2" />
+              <UserProfileDropdown isMobile={true} />
             </div>
-            <UserProfileDropdown />
           </div>
         )}
       </div>
