@@ -12,18 +12,23 @@ import { Label } from "@/components/ui/label";
 import apiInstance from "@/lib/apiInstance";
 import { Brain } from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 export default function SignInPage() {
+  const [isLoading, setIsLoading] = useState(false);
+
   const form = useForm();
   const handleSubmit = form.handleSubmit(async (data) => {
     try {
+      setIsLoading(true);
       const { data: response } = await apiInstance.post(`/api/user/login`, {
         email: data.email,
         password: data.password,
       });
 
+      setIsLoading(false);
       if (!response?.token) {
         throw new Error("Token não recebido na resposta.");
       }
@@ -35,6 +40,7 @@ export default function SignInPage() {
       window.location.href = "/dashboard";
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
+      setIsLoading(false);
       const errorMessage =
         error?.response?.data?.error || "Erro ao realizar login.";
       console.error("Erro ao realizar login:", errorMessage);
@@ -93,9 +99,15 @@ export default function SignInPage() {
                   {...form.register("password")}
                 />
               </div>
-
-              <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 cursor-pointer">
-                Entrar
+              <Button
+                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 cursor-pointer flex items-center justify-center"
+                disabled={isLoading}
+              >
+                {isLoading ? (
+                  <div className="animate-spin rounded-full h-5 w-5 border-4 border-t-transparent border-white"></div>
+                ) : (
+                  "Entrar"
+                )}
               </Button>
             </form>
 

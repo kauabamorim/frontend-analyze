@@ -14,18 +14,22 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import apiInstance from "@/lib/apiInstance";
+import { useState } from "react";
 
 export default function SignUpPage() {
+  const [isLoading, setIsLoading] = useState(false);
   const form = useForm();
 
   const handleSubmit = form.handleSubmit(async (data) => {
     try {
+      setIsLoading(true);
       const { data: response } = await apiInstance.post(`/api/user/register`, {
         firstName: data.firstName,
         lastName: data.lastName,
         email: data.email,
         password: data.password,
       });
+      setIsLoading(false);
       form.reset();
       toast.success("Sucesso!", {
         description: response?.message || "Usuário registrado com sucesso!",
@@ -33,6 +37,7 @@ export default function SignUpPage() {
       window.location.href = "/signin";
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
+      setIsLoading(false);
       const errorMessage =
         error?.response?.data?.error || "Erro ao registrar usuário.";
       console.error("Erro ao registrar usuário:", errorMessage);
@@ -108,8 +113,15 @@ export default function SignUpPage() {
                 />
               </div>
 
-              <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 cursor-pointer">
-                Criar Conta
+              <Button
+                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 cursor-pointer flex items-center justify-center"
+                disabled={isLoading}
+              >
+                {isLoading ? (
+                  <div className="animate-spin rounded-full h-5 w-5 border-4 border-t-transparent border-white"></div>
+                ) : (
+                  "Criar conta"
+                )}
               </Button>
             </form>
 
